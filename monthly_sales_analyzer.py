@@ -60,8 +60,15 @@ def days_above_threshold(data, product_key, threshold):
 
 def top_product(data):
     """Determines which product had the highest total sales in 30 days."""
-    list = [total_sales_by_product(sales_data,"product_a"), total_sales_by_product(sales_data,"product_b"), total_sales_by_product(sales_data,"product_c")]
-    return max(list)
+    count_prod_a = total_sales_by_product(data,"product_a")
+    count_prod_b = total_sales_by_product(data,"product_b")
+    count_prod_c = total_sales_by_product(data,"product_c")
+    if count_prod_a > count_prod_b and count_prod_a > count_prod_c:
+        return "product_a"
+    elif count_prod_b > count_prod_c:
+        return "product_b"
+    else:
+        return "product_c"
 
 def worst_selling_sales(data):
     total = data[0]["product_a"] + data[0]["product_b"] + data[0]["product_c"]
